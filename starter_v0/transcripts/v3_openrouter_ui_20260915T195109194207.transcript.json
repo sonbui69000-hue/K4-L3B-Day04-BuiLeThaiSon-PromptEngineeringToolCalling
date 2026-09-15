@@ -1,0 +1,17 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260915T195109194207",
+  "version": "v3",
+  "artifact_version": "v3+p03d259c32eb9+t59bbd7d74ee7",
+  "prompt_hash": "03d259c32eb9e288e3274f34ffe05f6038000282032252678c1ef18cc7f0c383",
+  "tools_hash": "59bbd7d74ee7985c64c296f93153c67ac0b2ff33996fa0075d3ae7414441c360",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "/home/sonbui/Downloads/dmvin/rm/starter_v0/artifacts/system_prompt.md",
+  "tools": "/home/sonbui/Downloads/dmvin/rm/starter_v0/artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "ui": "ui_server.py",
+  "created_at": "2026-09-15T19:51:09",
+  "updated_at": "2026-09-15T19:51:09",
+  "turns": []
+}
