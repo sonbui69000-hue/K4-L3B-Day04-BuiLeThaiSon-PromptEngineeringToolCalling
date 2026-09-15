@@ -1,3 +1,51 @@
+# Day04 Submission - BuiLeThaiSon
+
+Repo: https://github.com/sonbui69000-hue/K4-L3B-Day04-BuiLeThaiSon-PromptEngineeringToolCalling
+
+Team: BuiLeThaiSon  
+Representative: Bui Le Thai Son - 02880  
+Branch: `main`  
+Current checked commit: `311580e`
+
+## Final Agent
+
+This submission keeps the IT Helpdesk domain from the starter. The agent supports Northstar Labs service-status checks, user lookup, device inspection, internal KB/policy search, incident report formatting, and ticket creation after confirmation. All data is synthetic.
+
+## Evidence Summary
+
+| Suite | Version | Run file | Result |
+|---|---|---|---|
+| Base v0 | v0 | `starter_v0/runs/v0_B_base_openrouter_20260915T181646988275.json` | 21/30, accuracy 0.7000 |
+| Base v1 | v1 | `starter_v0/runs/v1_B_base_openrouter_20260915T182222593823.json` | 22/30, accuracy 0.7333 |
+| Base v2 | v2 | `starter_v0/runs/v2_B_base_openrouter_20260915T182513037200.json` | 28/30, accuracy 0.9333 |
+| Base v3 | v3 | `starter_v0/runs/v3_B_base_openrouter_20260915T182731123041.json` | 29/30, accuracy 0.9667 |
+| Group | v3 | `starter_v0/runs/v3_B_group_openrouter_20260915T183319395566.json` | 10/10, accuracy 1.0000 |
+| Adversarial | v3 | `starter_v0/runs/v3_B_adversarial_openrouter_20260915T191742719053.json` | 10/12, accuracy 0.8333 |
+
+## Run Commands
+
+```bash
+cd starter_v0
+venv/bin/python scripts/preflight_provider.py --provider openrouter
+venv/bin/python run_eval.py --provider openrouter --version v0 --suite base --eval-cases data/eval_base.json
+venv/bin/python run_eval.py --provider openrouter --version v1 --suite base --eval-cases data/eval_base.json
+venv/bin/python run_eval.py --provider openrouter --version v2 --suite base --eval-cases data/eval_base.json
+venv/bin/python run_eval.py --provider openrouter --version v3 --suite base --eval-cases data/eval_base.json
+venv/bin/python run_eval.py --provider openrouter --version v3 --suite group --eval-cases data/eval_group.json
+venv/bin/python run_eval.py --provider openrouter --version v3 --suite adversarial --eval-cases data/eval_adversarial.json
+```
+
+## UI
+
+```bash
+cd starter_v0
+venv/bin/python ui_server.py --provider openrouter --version v3 --port 8000
+```
+
+Open `http://127.0.0.1:8000`. The UI shows artifact version, chat turns, tool names, tool inputs, tool results/errors, and the transcript path. Example transcript: `starter_v0/transcripts/v3_openrouter_20260915T195816794216.transcript.json`.
+
+---
+
 # Day04 — Prompt Engineering & Tool Calling
 
 **Làm nhóm · K4 Level 3B · Trợ lý AI theo lĩnh vực tự chọn.** Mỗi thành viên tự nộp cùng URL repo nhóm trên VLearn. Repo bài nộp dùng tên `K4-L3-DAY04-HoVaTen-MSSV-PromptEngineeringToolCalling`; khai báo thành viên và đóng góp trong [TEAM.md](TEAM.md).
@@ -76,6 +124,16 @@ python run_eval.py --provider openrouter --version v0 --suite base --eval-cases 
 ```
 
 Thay `openrouter` bằng `openai`, `anthropic` hoặc `gemini` khi dùng provider khác. Không commit `.env`.
+
+## Chạy UI chat
+
+Sau khi điền provider key trong `starter_v0/.env`, chạy UI từ thư mục `starter_v0`:
+
+```powershell
+python ui_server.py --provider openrouter --version v3 --port 8000
+```
+
+Mở `http://127.0.0.1:8000` trong trình duyệt. UI hiển thị artifact version, hội thoại, tool call, input, kết quả hoặc lỗi tool, và lưu transcript vào `starter_v0/transcripts/`.
 
 ## Tài liệu cần đọc
 
