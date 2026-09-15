@@ -23,7 +23,7 @@ tools:
       type: object
       properties:
         query: {type: string, default: "", description: "Nội dung cần tìm"}
-        category: {type: string, enum: [all, vpn, email, wifi, printing, account, security, hardware, software, meeting_room], default: "all", description: "Specific article category. Outlook/email/webmail => email; VPN/macOS/Windows VPN => vpn; Wi-Fi/network setup => wifi; printer/spooler => printing."}
+        category: {type: string, enum: [all, vpn, email, wifi, printing, account, security, hardware, software, meeting_room], default: "all", description: "Specific article category. Outlook profile/Outlook/email/webmail => email; account/password/MFA/login account guides => account; VPN/macOS/Windows VPN => vpn; Wi-Fi/network setup => wifi; printer/spooler => printing."}
         top_k: {type: integer, default: 3, description: "Số kết quả"}
       required: [query, category]
 
@@ -37,7 +37,7 @@ tools:
       required: [service]
 
   - name: inspect_device
-    description: "Inspect diagnostics for a specific company asset/device. Use only when the user gives a real asset ID such as LT-204, LT-240, LT-318, DT-031, DT-087, or PR-404. Do not use employee IDs as asset IDs; use lookup_user for EMP-*."
+    description: "Inspect diagnostics for a specific company asset/device only when diagnostics are explicitly requested. Use for real asset IDs such as LT-204, LT-240, LT-318, DT-031, DT-087, or PR-404. Never guess an asset ID for phrases like my laptop/laptop cua minh. Do not inspect an asset mentioned only as context for a loaner/replacement request. Do not use employee IDs as asset IDs; use lookup_user for EMP-*."
     parameters:
       type: object
       properties:
@@ -105,3 +105,15 @@ tools:
         asset_id: {type: string, default: "", description: "Mã tài sản nếu có"}
         confirmed: {type: boolean, default: false, description: "Must be true only when the current final ticket payload has explicit user confirmation."}
       required: [summary, priority, confirmed]
+
+  # ---------------- Team-built bonus tools ----------------
+  - name: check_loaner_inventory
+    description: "Check synthetic loaner-device inventory for temporary replacement devices. Use when users ask for a loaner, spare, replacement, temporary, or borrowable laptop/desktop/mobile/peripheral. This is read-only and does not reserve or assign a device."
+    parameters:
+      type: object
+      properties:
+        device_type: {type: string, enum: [any, laptop, desktop, mobile, peripheral], default: "any", description: "Requested loaner device type."}
+        location: {type: string, default: "", description: "Preferred office/location such as Bangkok or Singapore."}
+        os_family: {type: string, enum: [any, windows, macos, linux, ios], default: "any", description: "Requested OS family."}
+        max_results: {type: integer, default: 3, description: "Maximum number of matching available loaners to return."}
+      required: [device_type]

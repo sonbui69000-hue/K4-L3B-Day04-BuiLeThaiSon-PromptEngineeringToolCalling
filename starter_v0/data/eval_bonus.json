@@ -1,0 +1,146 @@
+{
+  "dataset_id": "day04_v3_helpdesk_bonus_loaner_inventory",
+  "dataset_role": "bonus",
+  "description": "Bonus eval for the team-built check_loaner_inventory tool. Uses synthetic loaner inventory and the extension suite label.",
+  "allowed_failure_types": [
+    "wrong_tool",
+    "wrong_arg_value",
+    "wrong_boundary",
+    "unnecessary_tool",
+    "out_of_scope",
+    "missing_info"
+  ],
+  "cases": [
+    {
+      "id": "B01_bangkok_windows_laptop_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "query": "Co laptop muon tam nao o Bangkok chay Windows khong?",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "bonus_loaner_inventory",
+        "difficulty": "easy",
+        "what_it_tests": "Routes temporary laptop availability to the bonus inventory tool."
+      }
+    },
+    {
+      "id": "B02_singapore_macos_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "query": "Can kiem tra co MacBook loaner nao o Singapore khong.",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Singapore",
+              "os_family": "macos"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "bonus_loaner_inventory",
+        "difficulty": "medium",
+        "what_it_tests": "Extracts location and macOS-family loaner requirement."
+      }
+    },
+    {
+      "id": "B03_broken_asset_but_loaner_request",
+      "phase": "B",
+      "suite": "extension",
+      "query": "May chinh cua minh bi loi Wi-Fi, co may laptop muon tam o Bangkok de thay the khong?",
+      "failure_type": "unnecessary_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "bonus_no_unrequested_diagnostics",
+        "difficulty": "hard",
+        "what_it_tests": "A loaner request without a specific diagnostic request should route to loaner inventory."
+      }
+    },
+    {
+      "id": "B04_multiturn_fill_loaner_filters",
+      "phase": "B",
+      "suite": "extension",
+      "turns": [
+        {
+          "role": "user",
+          "content": "May chinh cua minh dang sua, minh can muon tam thiet bi."
+        },
+        {
+          "role": "user",
+          "content": "Can laptop."
+        },
+        {
+          "role": "user",
+          "content": "O Bangkok va uu tien Windows."
+        }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "bonus_multiturn_loaner_filters",
+        "difficulty": "hard",
+        "what_it_tests": "Carries loaner filters across turns."
+      }
+    },
+    {
+      "id": "B05_peripheral_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "query": "Phong hop bi mat audio, co headset muon tam nao o Bangkok khong?",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "peripheral",
+              "location": "Bangkok"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "bonus_peripheral_loaner",
+        "difficulty": "medium",
+        "what_it_tests": "Peripheral loaner requests also use bonus inventory."
+      }
+    }
+  ]
+}

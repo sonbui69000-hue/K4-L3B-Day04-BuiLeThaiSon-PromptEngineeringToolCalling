@@ -1,0 +1,429 @@
+{
+  "run_id": "v3_B_extension_openrouter_20260915T203216233842",
+  "version": "v3",
+  "artifact_version": "v3+p42fb99abc630+t2453cb2f9944",
+  "prompt_hash": "42fb99abc6308375a5f7dad34ade2aac5921e72868df72b0ae6558077cbd383b",
+  "tools_hash": "2453cb2f9944274dfb1ebf7c00809d246ca99b9f69a648aa533fa91056b3b00d",
+  "phase": "B",
+  "suite": "extension",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "/home/sonbui/Downloads/dmvin/rm/starter_v0/artifacts/system_prompt.md",
+  "tools": "/home/sonbui/Downloads/dmvin/rm/starter_v0/artifacts/tools.yaml",
+  "eval_cases": "data/eval_bonus.json",
+  "dataset_id": "day04_v3_helpdesk_bonus_loaner_inventory",
+  "dataset_role": "bonus",
+  "description": "Bonus eval for the team-built check_loaner_inventory tool. Uses synthetic loaner inventory and the extension suite label.",
+  "generated_at": "2026-09-15T20:32:16",
+  "summary": {
+    "total_cases": 5,
+    "measured_cases": 5,
+    "provider_error_cases": 0,
+    "passed_cases": 5,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "B01_bangkok_windows_laptop_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "case_suite": "extension",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "bonus_loaner_inventory",
+        "difficulty": "easy",
+        "what_it_tests": "Routes temporary laptop availability to the bonus inventory tool."
+      },
+      "input": "Co laptop muon tam nao o Bangkok chay Windows khong?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "check_loaner_inventory",
+          "args": {
+            "device_type": "laptop",
+            "location": "Bangkok",
+            "os_family": "windows"
+          },
+          "result": {
+            "tool": "check_loaner_inventory",
+            "device_type": "laptop",
+            "location": "Bangkok",
+            "os_family": "windows",
+            "available_count": 1,
+            "matches": [
+              {
+                "loaner_id": "LN-101",
+                "device_type": "laptop",
+                "manufacturer": "Dell",
+                "model": "Latitude 7440",
+                "os_family": "windows",
+                "os": "Windows 11 23H2",
+                "location": "Bangkok",
+                "status": "available",
+                "condition": "ready",
+                "notes": "Standard business image; suitable for Wi-Fi/VPN replacement cases"
+              }
+            ],
+            "snapshot_at": "2026-09-14T09:00:00+07:00",
+            "side_effect": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "B02_singapore_macos_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "case_suite": "extension",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "bonus_loaner_inventory",
+        "difficulty": "medium",
+        "what_it_tests": "Extracts location and macOS-family loaner requirement."
+      },
+      "input": "Can kiem tra co MacBook loaner nao o Singapore khong.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Singapore",
+              "os_family": "macos"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Singapore",
+              "os_family": "macos"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "check_loaner_inventory",
+          "args": {
+            "device_type": "laptop",
+            "location": "Singapore",
+            "os_family": "macos"
+          },
+          "result": {
+            "tool": "check_loaner_inventory",
+            "device_type": "laptop",
+            "location": "Singapore",
+            "os_family": "macos",
+            "available_count": 1,
+            "matches": [
+              {
+                "loaner_id": "LN-102",
+                "device_type": "laptop",
+                "manufacturer": "Apple",
+                "model": "MacBook Air 13-inch M3",
+                "os_family": "macos",
+                "os": "macOS 15.0",
+                "location": "Singapore",
+                "status": "available",
+                "condition": "ready",
+                "notes": "Legal and executive loaner pool"
+              }
+            ],
+            "snapshot_at": "2026-09-14T09:00:00+07:00",
+            "side_effect": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "B03_broken_asset_but_loaner_request",
+      "phase": "B",
+      "suite": "extension",
+      "case_suite": "extension",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "bonus_no_unrequested_diagnostics",
+        "difficulty": "hard",
+        "what_it_tests": "A loaner request without a specific diagnostic request should route to loaner inventory."
+      },
+      "input": "May chinh cua minh bi loi Wi-Fi, co may laptop muon tam o Bangkok de thay the khong?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "check_loaner_inventory",
+          "args": {
+            "device_type": "laptop",
+            "location": "Bangkok"
+          },
+          "result": {
+            "tool": "check_loaner_inventory",
+            "device_type": "laptop",
+            "location": "Bangkok",
+            "os_family": "any",
+            "available_count": 1,
+            "matches": [
+              {
+                "loaner_id": "LN-101",
+                "device_type": "laptop",
+                "manufacturer": "Dell",
+                "model": "Latitude 7440",
+                "os_family": "windows",
+                "os": "Windows 11 23H2",
+                "location": "Bangkok",
+                "status": "available",
+                "condition": "ready",
+                "notes": "Standard business image; suitable for Wi-Fi/VPN replacement cases"
+              }
+            ],
+            "snapshot_at": "2026-09-14T09:00:00+07:00",
+            "side_effect": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "B04_multiturn_fill_loaner_filters",
+      "phase": "B",
+      "suite": "extension",
+      "case_suite": "extension",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "bonus_multiturn_loaner_filters",
+        "difficulty": "hard",
+        "what_it_tests": "Carries loaner filters across turns."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "May chinh cua minh dang sua, minh can muon tam thiet bi."
+        },
+        {
+          "role": "user",
+          "content": "Can laptop."
+        },
+        {
+          "role": "user",
+          "content": "O Bangkok va uu tien Windows."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "laptop",
+              "location": "Bangkok",
+              "os_family": "windows"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "check_loaner_inventory",
+          "args": {
+            "device_type": "laptop",
+            "location": "Bangkok",
+            "os_family": "windows"
+          },
+          "result": {
+            "tool": "check_loaner_inventory",
+            "device_type": "laptop",
+            "location": "Bangkok",
+            "os_family": "windows",
+            "available_count": 1,
+            "matches": [
+              {
+                "loaner_id": "LN-101",
+                "device_type": "laptop",
+                "manufacturer": "Dell",
+                "model": "Latitude 7440",
+                "os_family": "windows",
+                "os": "Windows 11 23H2",
+                "location": "Bangkok",
+                "status": "available",
+                "condition": "ready",
+                "notes": "Standard business image; suitable for Wi-Fi/VPN replacement cases"
+              }
+            ],
+            "snapshot_at": "2026-09-14T09:00:00+07:00",
+            "side_effect": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "B05_peripheral_loaner",
+      "phase": "B",
+      "suite": "extension",
+      "case_suite": "extension",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "bonus_peripheral_loaner",
+        "difficulty": "medium",
+        "what_it_tests": "Peripheral loaner requests also use bonus inventory."
+      },
+      "input": "Phong hop bi mat audio, co headset muon tam nao o Bangkok khong?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "peripheral",
+              "location": "Bangkok"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "check_loaner_inventory",
+            "args": {
+              "device_type": "peripheral",
+              "location": "Bangkok"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "check_loaner_inventory",
+          "args": {
+            "device_type": "peripheral",
+            "location": "Bangkok"
+          },
+          "result": {
+            "tool": "check_loaner_inventory",
+            "device_type": "peripheral",
+            "location": "Bangkok",
+            "os_family": "any",
+            "available_count": 1,
+            "matches": [
+              {
+                "loaner_id": "LN-401",
+                "device_type": "peripheral",
+                "manufacturer": "Logitech",
+                "model": "Zone Wireless Headset",
+                "os_family": "any",
+                "os": "USB/Bluetooth",
+                "location": "Bangkok",
+                "status": "available",
+                "condition": "ready",
+                "notes": "For meeting-room audio fallback"
+              }
+            ],
+            "snapshot_at": "2026-09-14T09:00:00+07:00",
+            "side_effect": false
+          }
+        }
+      ]
+    }
+  ]
+}

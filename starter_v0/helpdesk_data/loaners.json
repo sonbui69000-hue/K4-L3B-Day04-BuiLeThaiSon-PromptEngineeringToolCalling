@@ -1,0 +1,77 @@
+{
+  "snapshot_at": "2026-09-14T09:00:00+07:00",
+  "loaners": [
+    {
+      "loaner_id": "LN-101",
+      "device_type": "laptop",
+      "manufacturer": "Dell",
+      "model": "Latitude 7440",
+      "os_family": "windows",
+      "os": "Windows 11 23H2",
+      "location": "Bangkok",
+      "status": "available",
+      "condition": "ready",
+      "notes": "Standard business image; suitable for Wi-Fi/VPN replacement cases"
+    },
+    {
+      "loaner_id": "LN-102",
+      "device_type": "laptop",
+      "manufacturer": "Apple",
+      "model": "MacBook Air 13-inch M3",
+      "os_family": "macos",
+      "os": "macOS 15.0",
+      "location": "Singapore",
+      "status": "available",
+      "condition": "ready",
+      "notes": "Legal and executive loaner pool"
+    },
+    {
+      "loaner_id": "LN-103",
+      "device_type": "laptop",
+      "manufacturer": "Lenovo",
+      "model": "ThinkPad T14 Gen 3",
+      "os_family": "windows",
+      "os": "Windows 11 23H2",
+      "location": "Bangkok",
+      "status": "reserved",
+      "condition": "ready",
+      "notes": "Reserved for Finance onboarding"
+    },
+    {
+      "loaner_id": "LN-201",
+      "device_type": "mobile",
+      "manufacturer": "Apple",
+      "model": "iPhone 14",
+      "os_family": "ios",
+      "os": "iOS 18.0",
+      "location": "Singapore",
+      "status": "available",
+      "condition": "ready",
+      "notes": "Managed apps current"
+    },
+    {
+      "loaner_id": "LN-301",
+      "device_type": "desktop",
+      "manufacturer": "HP",
+      "model": "EliteDesk 800 G9",
+      "os_family": "windows",
+      "os": "Windows 11 23H2",
+      "location": "Bangkok",
+      "status": "maintenance",
+      "condition": "disk imaging",
+      "notes": "Unavailable until reimaging completes"
+    },
+    {
+      "loaner_id": "LN-401",
+      "device_type": "peripheral",
+      "manufacturer": "Logitech",
+      "model": "Zone Wireless Headset",
+      "os_family": "any",
+      "os": "USB/Bluetooth",
+      "location": "Bangkok",
+      "status": "available",
+      "condition": "ready",
+      "notes": "For meeting-room audio fallback"
+    }
+  ]
+}
